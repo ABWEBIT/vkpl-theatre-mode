@@ -1,5 +1,5 @@
 'use strict';
-let css,tab;
+let tab;
 
 chrome.tabs.query(
   {active:true,currentWindow:true},
@@ -9,15 +9,17 @@ chrome.tabs.query(
 const key = 'mode';
 let value = {name:'normal'};
 
-chrome.storage.local.set({key:value},()=>{
-  modeFuncNormal();
+chrome.storage.local.get(function(obj){
+  if(typeof obj.key === 'undefined'){
+    chrome.storage.local.set({key:value});
+  };
 });
 
-
 function storageFunc(){
-  chrome.storage.local.get([key],()=>{
-    if(value.name === 'normal') modeFuncTheatre();
-    else if(value.name === 'theatre') modeFuncNormal();
+  chrome.storage.local.get(function(obj){
+    console.log(obj.key.name);
+    if(obj.key.name === 'normal') modeFuncTheatre();
+    else if(obj.key.name === 'theatre') modeFuncNormal();
   });
 };
 
