@@ -4,7 +4,7 @@
   "manifest_version": 3,
   "description": "VKPL Theatre mode in a window",
   "action": {
-    "default_icon": "vkpl-on.png",
+    "default_icon": "vkpl.png",
     "default_title": "Open menu",
     "default_popup": "extension.html"
   },
