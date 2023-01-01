@@ -1,0 +1,20 @@
+{
+  "name": "VKPL Theatre mode",
+  "version": "0.1",
+  "manifest_version": 3,
+  "description": "VKPL Theatre mode",
+  "action": {
+    "default_icon": "vkpl-on.png",
+    "default_title": "Open menu",
+    "default_popup": "extension.html"
+  },
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "storage",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://vkplay.live/*"
+  ]
+}
