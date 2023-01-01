@@ -2,7 +2,7 @@
   "name": "VKPL Theatre mode",
   "version": "0.1",
   "manifest_version": 3,
-  "description": "VKPL Theatre mode",
+  "description": "VKPL Theatre mode in a window",
   "action": {
     "default_icon": "vkpl-on.png",
     "default_title": "Open menu",
