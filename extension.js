@@ -16,7 +16,6 @@ chrome.storage.local.get(function(obj){
   else if(obj.key.name === 'theatre') modeFuncNormal();
 });
 
-
 function storageFunc(){
   chrome.storage.local.get(function(obj){
     if(obj.key.name === 'normal') modeFuncTheatre();
