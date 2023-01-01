@@ -10,9 +10,7 @@ const key = 'mode';
 value = {name:'normal'};
 
 chrome.storage.local.get(function(obj){
-  if(typeof obj.key === 'undefined'){
-    chrome.storage.local.set({key:value});
-  }
+  if(typeof obj.key === 'undefined') chrome.storage.local.set({key:value})
   else if(obj.key.name === 'theatre') modeFuncNormal();
 });
 
