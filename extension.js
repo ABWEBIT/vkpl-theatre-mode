@@ -6,24 +6,16 @@ chrome.tabs.query(
   function(tabs){tab = tabs[0];}
 );
 
-const key = 'mode';
-value = {name:'normal'};
-
-chrome.storage.local.get(function(obj){
-  if(typeof obj.key === 'undefined') chrome.storage.local.set({key:value})
-  else if(obj.key.name === 'theatre') modeFuncNormal();
-});
-
 function storageFunc(){
   chrome.storage.local.get(function(obj){
-    if(obj.key.name === 'normal') modeFuncTheatre();
-    else if(obj.key.name === 'theatre') modeFuncNormal();
+    if(obj.mode.name === 'normal') modeFuncTheatre();
+    else if(obj.mode.name === 'theatre') modeFuncNormal();
   });
 };
 
 function modeFuncTheatre(){
   value = {name:'theatre'};
-  chrome.storage.local.set({key:value});
+  chrome.storage.local.set({'mode':value});
   chrome.scripting.insertCSS({
     target: {tabId: tab.id},
     files: ['mode.css']
@@ -32,7 +24,7 @@ function modeFuncTheatre(){
 
 function modeFuncNormal(){
   value = {name:'normal'};
-  chrome.storage.local.set({key:value});
+  chrome.storage.local.set({'mode':value});
   chrome.scripting.removeCSS({
     target: {tabId: tab.id},
     files: ['mode.css']
