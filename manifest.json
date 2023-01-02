@@ -1,6 +1,6 @@
 {
   "name": "VKPL Theatre mode",
-  "version": "0.1",
+  "version": "0.2",
   "manifest_version": 3,
   "description": "VKPL Theatre mode in a window",
   "action": {
@@ -8,13 +8,14 @@
     "default_title": "Open menu",
     "default_popup": "extension.html"
   },
+  "content_scripts": [{
+      "matches": ["https://vkplay.live/*"],
+      "js": ["worker.js"]
+  }],
   "permissions": [
     "activeTab",
     "tabs",
     "storage",
     "scripting"
-  ],
-  "host_permissions": [
-    "https://vkplay.live/*"
   ]
 }
