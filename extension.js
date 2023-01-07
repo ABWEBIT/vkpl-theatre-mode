@@ -8,7 +8,11 @@ chrome.tabs.query(
 
 function storageFunc(){
   chrome.storage.local.get(function(obj){
-    if(obj.mode.name === 'normal') modeFuncTheatre();
+    if(typeof obj.mode === 'undefined'){
+      value = {name:'normal'};
+      chrome.storage.local.set({'mode':value});
+    }
+    else if(obj.mode.name === 'normal') modeFuncTheatre()
     else if(obj.mode.name === 'theatre') modeFuncNormal();
   });
 };
