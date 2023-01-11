@@ -1,17 +1,12 @@
 {
   "name": "VKPL Theatre mode",
-  "version": "0.2",
+  "version": "0.3",
   "manifest_version": 3,
   "description": "VKPL Theatre mode in a window",
   "action": {
     "default_icon": "vkpl-off.png",
     "default_title": "VKPL Theatre mode"
   },
-  "content_scripts": [{
-      "matches": ["https://vkplay.live/*"],
-      "run_at": "document_start",
-      "js": ["background.js"]
-  }],
   "permissions": [
     "activeTab",
     "tabs",
@@ -22,7 +17,6 @@
     "https://vkplay.live/*"
   ],
   "background": {
-    "service_worker": "worker.js",
-    "type": "module"
+    "service_worker": "worker.js"
   }
 }
