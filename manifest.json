@@ -7,6 +7,13 @@
     "default_icon": "vkpl-off.png",
     "default_title": "VKPL Theatre mode"
   },
+  "content_scripts": [
+    {
+      "matches": ["https://vkplay.live/*"],
+      "run_at": "document_start",
+      "js": ["background.js"]
+    }
+  ],
   "permissions": [
     "activeTab",
     "tabs",
