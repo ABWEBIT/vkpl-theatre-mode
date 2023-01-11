@@ -1,8 +1,8 @@
 'use strict';
-chrome.runtime.onInstalled.addListener(details=>{
-  if(details.reason == 'install'){
-    chrome.storage.local.set({'mode':{name:'normal'}});
-  };
+chrome.storage.session.get(['mode']).then((obj)=>{
+  if(obj.mode === undefined){
+    chrome.storage.session.set({'mode':{name:'normal'}});
+  }
 });
 
 let tab,link;
@@ -27,7 +27,7 @@ chrome.action.onClicked.addListener((tab)=>{
   });
 
   function modeFunc(){
-    chrome.storage.local.get(['mode']).then((obj)=>{
+    chrome.storage.session.get(['mode']).then((obj)=>{
       if(obj.mode.name === 'normal') modeTheatre()
       else if(obj.mode.name === 'theatre') modeNormal();
     });
@@ -35,7 +35,7 @@ chrome.action.onClicked.addListener((tab)=>{
 
   function modeTheatre(){
     chrome.action.setIcon({ path:'vkpl-on.png'});
-    chrome.storage.local.set({'mode':{name:'theatre'}}).then(()=>{
+    chrome.storage.session.set({'mode':{name:'theatre'}}).then(()=>{
       chrome.scripting.insertCSS({
         target: {tabId: tab.id},
         files: ['mode.css']
@@ -45,7 +45,7 @@ chrome.action.onClicked.addListener((tab)=>{
 
   function modeNormal(){
     chrome.action.setIcon({ path:'vkpl-off.png'});
-    chrome.storage.local.set({'mode':{name:'normal'}}).then(()=>{
+    chrome.storage.session.set({'mode':{name:'normal'}}).then(()=>{
       chrome.scripting.removeCSS({
         target: {tabId: tab.id},
         files: ['mode.css']
