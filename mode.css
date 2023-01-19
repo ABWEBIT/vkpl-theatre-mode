@@ -3,6 +3,7 @@
 }
 
 #topMenu,
+div[class^="AppContent_contentWrapper"] > div:nth-of-type(1),
 div[class^="StreamPanel_root"],
 div[class^="StreamPage_customBlocks"],
 div[class^="CollapsablePanel_container"],
@@ -20,7 +21,7 @@ div[class^="StreamPage_stream"]{
   min-height:100vh!important;
 }
 
-div[class^="StreamPage_chatToggler"]{
+div[class^="StreamChatToggler"]{
   border-top:0 solid transparent!important;
   top:0!important;
 }
