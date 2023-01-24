@@ -5,36 +5,44 @@ chrome.storage.session.get(['mode']).then((obj)=>{
   }
 });
 
-let tab,link;
+let tab;
+const vk = 'vkplay.live';
 
-chrome.action.onClicked.addListener((tab)=>{
+chrome.action.onClicked.addListener(function(tab){
 
-  chrome.tabs.query(
-    {active:true,currentWindow:true},
+  let url = (new URL(tab.url)).hostname;
+  if(url !== vk) return;
+
+  chrome.tabs.query({active:true,currentWindow:true},
     function(tabs){
       tab = tabs[0];
-      link = tab.url;
       modeFunc();
     }
   );
 
-  chrome.tabs.onUpdated.addListener(function(tabId,changeInfo,tab){
-    if(changeInfo.status === 'complete'){
-      if(tab.url === link){
-        modeNormal();
-      };
+  chrome.tabs.onUpdated.addListener(function(tabId,changeInfo,tabState){
+    if(tab.id === tabId){
+      modeNormal();
+    };
+  });
+
+  chrome.tabs.onRemoved.addListener(function(tabId,removeInfo){
+    if(tab.id === tabId){
+      chrome.action.setIcon({path:'vkpl-off.png'});
+      chrome.storage.session.set({'mode':{name:'normal'}});
     };
   });
 
   function modeFunc(){
     chrome.storage.session.get(['mode']).then((obj)=>{
-      if(obj.mode.name === 'normal') modeTheatre()
+      if(obj.mode === undefined) return
+      else if(obj.mode.name === 'normal') modeTheatre()
       else if(obj.mode.name === 'theatre') modeNormal();
     });
   };
 
   function modeTheatre(){
-    chrome.action.setIcon({ path:'vkpl-on.png'});
+    chrome.action.setIcon({path:'vkpl-on.png'});
     chrome.storage.session.set({'mode':{name:'theatre'}}).then(()=>{
       chrome.scripting.insertCSS({
         target: {tabId: tab.id},
@@ -44,7 +52,7 @@ chrome.action.onClicked.addListener((tab)=>{
   };
 
   function modeNormal(){
-    chrome.action.setIcon({ path:'vkpl-off.png'});
+    chrome.action.setIcon({path:'vkpl-off.png'});
     chrome.storage.session.set({'mode':{name:'normal'}}).then(()=>{
       chrome.scripting.removeCSS({
         target: {tabId: tab.id},
