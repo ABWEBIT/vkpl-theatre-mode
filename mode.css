@@ -1,8 +1,7 @@
-.dark-theme{
-  min-width:auto!important;
-}
+.dark-theme{min-width:auto!important;}
 
 #topMenu,
+div[class^="StreamPage_tabsWrapper"],
 div[class^="AppContent_contentWrapper"] > div:nth-of-type(1),
 div[class^="StreamPanel_root"],
 div[class^="StreamPage_customBlocks"],
@@ -10,24 +9,19 @@ div[class^="CollapsablePanel_container"],
 div[class^="Channels_container"]{
   width:0!important;
   height:0!important;
-  display:none!important;
-}
+  display:none!important;}
 
 div[class^="ScrollableComponent_container"]{
-  margin-left:0!important;
-}
+  margin-left:0!important;}
 
 div[class^="StreamPage_stream"]{
-  min-height:100vh!important;
-}
+  min-height:100vh!important;}
 
 div[class^="StreamChatToggler"]{
   border-top:0 solid transparent!important;
-  top:0!important;
-}
+  top:0!important;}
 
 div[class^="StreamPage_streamVideo"]{
   max-height:auto!important;
   aspect-ratio: 16 / 9;
-  max-width:100%!important;
-}
+  max-width:100%!important;}
