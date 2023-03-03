@@ -1,6 +1,6 @@
 {
   "name": "VKPL Theatre mode",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "manifest_version": 3,
   "description": "VKPL Theatre mode in a window",
   "action": {
