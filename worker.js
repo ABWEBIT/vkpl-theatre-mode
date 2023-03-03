@@ -22,7 +22,9 @@ chrome.action.onClicked.addListener(function(tab){
 
   chrome.tabs.onUpdated.addListener(function(tabId,changeInfo,tabState){
     if(tab.id === tabId){
-      modeNormal();
+      if((changeInfo.status || tab.status) == 'complete'){
+        modeNormal();
+      };
     };
   });
 
